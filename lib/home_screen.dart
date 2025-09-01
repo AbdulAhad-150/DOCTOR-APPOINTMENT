@@ -38,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
     switch (_selectedIndex) {
       case 0:
         // return AllDoctorList();
-      return _buildHomeScreen();
+        return _buildHomeScreen();
       case 1:
         return MapScreen();
       case 2:

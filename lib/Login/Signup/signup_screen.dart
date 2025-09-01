@@ -48,7 +48,7 @@ class _SignupScreenState extends State<SignupScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffbfd7ed),
+      // backgroundColor: Color(0xffbfd7ed),
       body: SafeArea(
         child: Center(
           child: Padding(
@@ -56,28 +56,41 @@ class _SignupScreenState extends State<SignupScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Image.asset('assets/images/Vector.png'),
+                SizedBox(height: 10),
+                Text(
+                  "HealthPal",
+                  style: GoogleFonts.bebasNeue(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w100,
+                    // color: Color(0xff003b73),
+                  ),
+                ),
+                SizedBox(height: 0),
                 Text(
                   "Sign up",
                   style: GoogleFonts.bebasNeue(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
+                    fontSize: 30,
+                    fontWeight: FontWeight.w100,
+                    // color: Color(0xff003b73),
                   ),
                 ),
                 SizedBox(height: 10),
                 Text(
-                  "Fill all the Details",
-                  style: GoogleFonts.bebasNeue(
-                    fontSize: 20,
+                  "Create Your Account ",
+                  style: TextStyle(
+                    fontSize: 15,
                     // fontWeight: FontWeight.bold,
-                    color: Color(0xff003b73),
+                    color: Colors.grey,
                   ),
                 ),
                 SizedBox(height: 20),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 10),
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    color: Color(0xffE2EFF1),
+                    borderRadius: BorderRadius.circular(12),
+                    color: Colors.grey[50],
+                    border: Border.all(color: Colors.grey[200]!),
                   ),
                   child: TextField(
                     controller: emailController,
@@ -93,8 +106,9 @@ class _SignupScreenState extends State<SignupScreen> {
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 10),
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    color: Color(0xffE2EFF1),
+                    borderRadius: BorderRadius.circular(12),
+                    color: Colors.grey[50],
+                    border: Border.all(color: Colors.grey[200]!),
                   ),
                   child: TextField(
                     controller: passwordController,
@@ -148,7 +162,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       ),
                     ),
                     child: const Text(
-                      'Sign up',
+                      'Sign Up',
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.white,
@@ -165,7 +179,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       style: TextStyle(color: Color(0xff003b73), fontSize: 15),
                       children: [
                         TextSpan(
-                          text: "Login",
+                          text: "Sign In",
                           style: TextStyle(
                             color: Color(0xff0074b7),
                             fontWeight: FontWeight.bold,
