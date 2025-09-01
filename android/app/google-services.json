@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "88546278361",
+    "project_id": "smit-hackathon-8285e",
+    "storage_bucket": "smit-hackathon-8285e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:88546278361:android:953e31403f49d38e3077c8",
+        "android_client_info": {
+          "package_name": "com.example.hackathon_smit"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDa33YfSgdu7dx6i1yk418odqKYJCzgw9o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
