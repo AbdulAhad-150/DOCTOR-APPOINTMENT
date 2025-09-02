@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:hackathon_smit/Login/Signup/login_screen.dart';
 import 'package:hackathon_smit/firebase_options.dart';
 import 'package:hackathon_smit/home_screen.dart';
 import 'package:hackathon_smit/screens/splash_screen.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
