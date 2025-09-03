@@ -5,6 +5,7 @@ import 'package:hackathon_smit/Login/Signup/login_screen.dart';
 import 'package:hackathon_smit/cards_used_in/card_hospital.dart';
 import 'package:hackathon_smit/screens/all_doctor_list.dart';
 import 'package:hackathon_smit/screens/map_screen.dart';
+import 'package:hackathon_smit/screens/profile_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -14,7 +15,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 3;
 
   void _navigateBottomBar(int index) {
     setState(() {
@@ -23,15 +24,6 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   // sign out function
-  void _signOut() async {
-    await FirebaseAuth.instance.signOut();
-    if (mounted) {
-      Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (context) => LoginScreen()),
-        (Route<dynamic> route) => false,
-      );
-    }
-  }
 
   // Different screens for bottom navigation
   Widget _getSelectedScreen() {
@@ -44,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
       case 2:
         return _calenderpage();
       case 3:
-        return _buildProfileScreen();
+        return ProfileScreen();
       default:
         return _buildHomeScreen();
     }
@@ -415,46 +407,46 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildProfileScreen() {
-    final user = FirebaseAuth.instance.currentUser;
+  // Widget _buildProfileScreen() {
+  //   final user = FirebaseAuth.instance.currentUser;
 
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          CircleAvatar(
-            radius: 50,
-            backgroundColor: Colors.blue[100],
-            child: const Icon(Icons.person, size: 60, color: Colors.blue),
-          ),
-          const SizedBox(height: 20),
-          Text(
-            user?.email ?? 'Guest User',
-            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(height: 10),
-          const Text(
-            'Profile Settings',
-            style: TextStyle(fontSize: 16, color: Colors.grey),
-          ),
-          const SizedBox(height: 30),
-          ElevatedButton.icon(
-            onPressed: _signOut,
-            icon: const Icon(Icons.logout),
-            label: const Text('Sign Out'),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.red,
-              foregroundColor: Colors.white,
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+  //   return Center(
+  //     child: Column(
+  //       mainAxisAlignment: MainAxisAlignment.center,
+  //       children: [
+  //         CircleAvatar(
+  //           radius: 50,
+  //           backgroundColor: Colors.blue[100],
+  //           child: const Icon(Icons.person, size: 60, color: Colors.blue),
+  //         ),
+  //         const SizedBox(height: 20),
+  //         Text(
+  //           user?.email ?? 'Guest User',
+  //           style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+  //         ),
+  //         const SizedBox(height: 10),
+  //         const Text(
+  //           'Profile Settings',
+  //           style: TextStyle(fontSize: 16, color: Colors.grey),
+  //         ),
+  //         const SizedBox(height: 30),
+  //         ElevatedButton.icon(
+  //           onPressed: _signOut,
+  //           icon: const Icon(Icons.logout),
+  //           label: const Text('Sign Out'),
+  //           style: ElevatedButton.styleFrom(
+  //             backgroundColor: Colors.red,
+  //             foregroundColor: Colors.white,
+  //             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+  //             shape: RoundedRectangleBorder(
+  //               borderRadius: BorderRadius.circular(12),
+  //             ),
+  //           ),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {

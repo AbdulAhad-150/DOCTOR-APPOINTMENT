@@ -11,11 +11,12 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   @override
+  @override
   void initState() {
     super.initState();
 
-    // Wait 3 seconds then navigate
     Timer(const Duration(seconds: 3), () {
+      if (!mounted) return; // prevent using context if widget is gone
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => OnboardingScreen()),

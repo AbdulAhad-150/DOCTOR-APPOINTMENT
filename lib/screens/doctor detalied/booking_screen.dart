@@ -181,15 +181,14 @@ class _BookAppointmentPageState extends State<BookAppointmentPage> {
 
                   // Save appointment in Firestore
                   await FirebaseFirestore.instance
+                      .collection("users")
+                      .doc(user.uid)
                       .collection("appointments")
                       .add({
-                        "uid": user.uid,
-                        "email": user.email,
                         "date": formattedDate,
                         "time": _selectedTime,
                         "createdAt": FieldValue.serverTimestamp(),
                       });
-
                   // Show confirmation
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(

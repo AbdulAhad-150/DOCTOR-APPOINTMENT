@@ -22,7 +22,9 @@ class _SignupScreenState extends State<SignupScreen> {
   //  controller for login user
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  // TextEditingController fullNameController = TextEditingController();
+  TextEditingController fullNameController = TextEditingController();
+  TextEditingController phoneNumberController = TextEditingController();
+
   bool _obscureText = true;
   FirebaseAuthMethods firebaseAuthMethod = FirebaseAuthMethods(
     FirebaseAuth.instance,
@@ -32,7 +34,8 @@ class _SignupScreenState extends State<SignupScreen> {
   void dispose() {
     emailController.dispose();
     passwordController.dispose();
-    // fullNameController.dispose();
+    fullNameController.dispose();
+    phoneNumberController.dispose();
     super.dispose();
   }
 
@@ -40,7 +43,8 @@ class _SignupScreenState extends State<SignupScreen> {
     firebaseAuthMethod.signUpMethod(
       emailController: emailController,
       passwordController: passwordController,
-      // fullNameController: fullNameController,
+      fullNameController: fullNameController,
+      phoneNumberController: phoneNumberController,
       context: context,
     );
   }
@@ -131,23 +135,43 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                 ),
                 SizedBox(height: 20),
-                // Container(
-                //   padding: EdgeInsets.symmetric(horizontal: 10),
-                //   decoration: BoxDecoration(
-                //     borderRadius: BorderRadius.circular(30),
-                //     color: Color(0xffE2EFF1),
-                //   ),
-                //   child: TextField(
-                //     controller: fullNameController,
-                //     decoration: InputDecoration(
-                //       label: Text('Enter Your Full Name'),
-                //       prefixIcon: Icon(Icons.person),
-                //       hintStyle: TextStyle(color: Color(0xff555273)),
-                //       border: InputBorder.none,
-                //     ),
-                //   ),
-                // ),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    color: Colors.grey[50],
+                    border: Border.all(color: Colors.grey[200]!),
+                  ),
+                  child: TextField(
+                    controller: fullNameController,
+                    decoration: InputDecoration(
+                      label: Text('Enter Your Full Name'),
+                      prefixIcon: Icon(Icons.person),
+                      hintStyle: TextStyle(color: Color(0xff555273)),
+                      border: InputBorder.none,
+                    ),
+                  ),
+                ),
                 SizedBox(height: 20),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    color: Colors.grey[50],
+                    border: Border.all(color: Colors.grey[200]!),
+                  ),
+                  child: TextField(
+                    controller: phoneNumberController,
+                    decoration: InputDecoration(
+                      label: Text('Phone Number'),
+                      prefixIcon: Icon(Icons.person),
+                      hintStyle: TextStyle(color: Color(0xff555273)),
+                      border: InputBorder.none,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20),
+
                 SizedBox(
                   height: 50,
                   width: double.infinity,

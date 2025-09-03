@@ -1,5 +1,8 @@
 // ignore_for_file: use_build_context_synchronously, duplicate_ignore
 
+// import 'dart:ffi';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hackathon_smit/home_screen.dart';
@@ -32,17 +35,49 @@ class FirebaseAuthMethods {
     );
   }
 
+  Future<void> saveUserData(
+    String fullName,
+    String email,
+    int phoneNumber,
+  ) async {
+    User? user = auth.currentUser;
+    if (user != null) {
+      await FirebaseFirestore.instance.collection("users").doc(user.uid).set({
+        "fullName": fullName,
+        "email": email,
+        "phoneNumber": phoneNumber,
+        "createdAt": FieldValue.serverTimestamp(),
+      }, SetOptions(merge: true)); // prevents overwrite
+    }
+  }
+
   // 🔹 SIGN UP with email & password
   Future<void> signUpMethod({
     required TextEditingController emailController,
     required TextEditingController passwordController,
+    required TextEditingController fullNameController,
+    required TextEditingController phoneNumberController,
     required BuildContext context,
+    // required TextEditingController usernameController,
+    // required  phoneController,
   }) async {
     try {
-      await auth.createUserWithEmailAndPassword(
+      UserCredential cred = await auth.createUserWithEmailAndPassword(
         email: emailController.text.trim(),
         password: passwordController.text.trim(),
       );
+      User? user = cred.user;
+
+      if (user != null) {
+        // Save user data to Firestore using UID as docId
+        await FirebaseFirestore.instance.collection("users").doc(user.uid).set({
+          "fullName": fullNameController.text.trim(),
+          // "username": usernameController.text.trim(),
+          "email": emailController.text.trim(),
+          "phone": phoneNumberController.text.trim(),
+          "createdAt": FieldValue.serverTimestamp(),
+        });
+      }
 
       _showAlert(
         context,
@@ -50,6 +85,8 @@ class FirebaseAuthMethods {
         onClose: () {
           emailController.clear();
           passwordController.clear();
+          phoneNumberController.clear();
+          fullNameController.clear();
         },
       );
     } on FirebaseAuthException catch (e) {
